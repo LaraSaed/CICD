@@ -31,6 +31,11 @@ class EmployeeController {
     return employeeService.findAll();
   }
 
+  @GetMapping("/employees/starts/{letter}")
+    public CollectionModel<EntityModel<EmployeeDTO>> getByFirstLetter(@PathVariable String letter) {
+        return employeeService.findByNameStartingWith(letter);
+    }
+
   @PostMapping("/employees")
   ResponseEntity<?> newEmployee(@RequestBody EmployeeDTO newEmployee) {
     return employeeService.newEmployee(newEmployee);   

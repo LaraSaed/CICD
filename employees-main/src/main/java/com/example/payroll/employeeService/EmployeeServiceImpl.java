@@ -120,4 +120,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         return ResponseEntity.noContent().build();
     }
 
+    @Override
+    public CollectionModel<EntityModel<EmployeeDTO>> findByNameStartingWith(String letter) {
+        // 1) Call repository
+        List<Employee> matchingEmployees = repository.findByNameStartingWithIgnoreCase(letter);
+
+        // 2) Map each Employee to DTO, then to HATEOAS EntityModel
+        List<EntityModel<EmployeeDTO>> dtos = matchingEmployees.stream()
+            .map(EmployeeMapper::toDTO)
+            .map(assembler::toModel)
+            .collect(Collectors.toList());
+
+        // 3) Wrap in a CollectionModel with a self‐link
+        return CollectionModel.of(
+            dtos,
+            linkTo(methodOn(EmployeeController.class).getByFirstLetter(letter)).withSelfRel()
+        );
+    }
+
 }
