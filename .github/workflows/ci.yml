@@ -64,11 +64,10 @@ jobs:
       - name: Make mvnw executable
         run: chmod +x ./mvnw
 
-      # 5) Run Checkstyle analysis
+    # 5) Run Checkstyle analysis (DISABLED)
       - name: Run Checkstyle analysis (DISABLED)
-     #   run: ./mvnw checkstyle:check -Dcheckstyle.skip=true
-     #   continue-on-error: true
-
+        run: ./mvnw checkstyle:check -Dcheckstyle.skip=true
+        continue-on-error: true
       # 6) Build with Maven Wrapper (skip tests)
       - name: Build with Maven Wrapper
         run: ./mvnw clean package -DskipTests -B
