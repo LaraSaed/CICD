@@ -57,3 +57,8 @@ We use GitFlow to manage our code releases and ensure production stability.
   - All changes must go through Pull Requests.  
   - CI/CD pipeline must pass before merge.  
   - Minimum one reviewer approval required.
+
+
+---
+### 🎓 Academic Context
+This project was developed in **2025** as part of the **Software Engineering** curriculum at **Bethlehem University**, specifically focusing on automation.
